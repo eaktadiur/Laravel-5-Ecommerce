@@ -14,7 +14,12 @@ class PagesController extends Controller {
 	 */
 	public function index()
 	{
-		 return view('app');
+		 return view('home');
+	}
+
+	public function home()
+	{
+		return view('home');
 	}
 
 	/**

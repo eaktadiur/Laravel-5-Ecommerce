@@ -29,13 +29,12 @@
     <script src="js/price-range.js"></script>
     <script src="js/jquery.prettyPhoto.js"></script>
     <script src="js/main.js"></script>
-
+  </head><!--/head-->
+  <body>
     @include('partial.header')
-
     @yield('slider')
     @yield('advertisement')
-    @yield('content')
-
+    @yield('main_content')
     @include('partial.footer')  
   </body>
   </html>

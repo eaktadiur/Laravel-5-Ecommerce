@@ -63,7 +63,19 @@
               <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
               <li><a href="{{URL::route('checkout')}}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
               <li><a href="{{URL::route('cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-              <li><a href="{{URL::route('login')}}"><i class="fa fa-lock"></i> Login</a></li>
+              <ul class="nav navbar-nav navbar-right">
+                @if (Auth::guest())
+                <li><a href="{{ url('/auth/login') }}"><i class="fa fa-lock"></i> Login</a></li>
+                <!-- <li><a href="{{ url('/auth/register') }}">Register</a></li> -->
+                @else
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+                  </ul>
+                </li>
+                @endif
+              </ul>
             </ul>
           </div>
         </div>

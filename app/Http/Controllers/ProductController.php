@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class PagesController extends Controller {
+class ProductController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,12 +14,7 @@ class PagesController extends Controller {
 	 */
 	public function index()
 	{
-		 return view('home');
-	}
-
-	public function error()
-	{
-		return view('pages.404');
+		return view('product.products');
 	}
 
 	/**
@@ -27,9 +22,9 @@ class PagesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function contact()
+	public function create()
 	{
-		return view('pages.contact');
+		//
 	}
 
 	/**

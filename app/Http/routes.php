@@ -10,7 +10,10 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+Route::controllers([
+ 'auth' => 'Auth\AuthController',
+ 'password' => 'Auth\PasswordController',
+]);
 Route::get('/', array('as'=>'home', 'uses'=>'PagesController@index'));
 //Route for Product
 Route::get('/products',array('as'=>'product','uses'=>'ProductController@index'));
@@ -23,7 +26,7 @@ Route::get('/cart',array('as'=>'cart','uses'=>'CartController@index'));
 //Route For login 
 Route::get('/login',array('as'=>'login','uses'=>'LoginController@index'));
 //Route For Blog List
-Route::get('/blog-list',array('as'=>'blog-list','uses'=>'PagesController@blogList'));
+Route::get('/blog-list',array('as'=>'blog-list','uses'=>'BloglistController@index'));
 //Route For Single Blog
 Route::get('/single-blog',array('as'=>'single-blog','uses'=>'SingleBlogController@index'));
 

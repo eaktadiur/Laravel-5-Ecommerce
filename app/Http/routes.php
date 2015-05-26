@@ -17,9 +17,9 @@ Route::get('/home', array('as'=>'home', 'uses'=>'PagesController@index'));
 
 
 Route::controllers([
- 'auth' => 'Auth\AuthController',
- 'password' => 'Auth\PasswordController',
-]);
+	'auth' => 'Auth\AuthController',
+	'password' => 'Auth\PasswordController',
+	]);
 Route::get('/', array('as'=>'home', 'uses'=>'PagesController@index'));
 //Route for Product
 Route::get('/products',array('as'=>'product','uses'=>'ProductController@index'));
@@ -39,3 +39,12 @@ Route::get('/single-blog',array('as'=>'single-blog','uses'=>'SingleBlogControlle
 Route::get('/404',array('as'=>'404','uses'=>'PagesController@error'));
 
 Route::get('/contact-us',array('as'=>'contact','uses'=>'PagesController@contact'));
+
+//Route for categories
+Route::get('/category/list', ['as'=>'category-list','uses'=>'CategoryController@index']);
+Route::get('/category/create', ['as'=>'category','uses'=>'CategoryController@create']);
+Route::post('/category/create',['as'=>'category','uses'=>'CategoryController@store']);
+//Route for Product
+Route::get('product/list',['as'=>'product-list','uses'=>'ProductController@productList']);
+Route::get('product/create',['as'=>'create-product','uses'=>'ProductController@create']);
+Route::post('product/create',['as'=>'create-product','uses'=>'ProductController@store']);

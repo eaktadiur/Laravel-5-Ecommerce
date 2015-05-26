@@ -100,7 +100,7 @@
               <li><a href="{{URL::route('home')}}" class="active">Home</a></li>
               <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                 <ul role="menu" class="sub-menu">
-                  <li><a href="{{URL::route('product')}}">Products ---</a></li>
+                  <li><a href="{{URL::route('product')}}">Products</a></li>
                   <li><a href="{{URL::route('product-details')}}">Product Details</a></li> 
                   <li><a href="{{URL::route('checkout')}}">Checkout</a></li> 
                   <li><a href="{{URL::route('cart')}}">Cart</a></li> 

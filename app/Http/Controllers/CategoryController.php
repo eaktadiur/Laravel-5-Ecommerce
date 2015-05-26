@@ -3,12 +3,16 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Product;
-use auth;
+use App\Category;
 use Input;
+use Auth;
 
-class ProductController extends Controller {
-
+class CategoryController extends Controller {
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
 	public function __construct()
 	{
 		$this->middleware('auth');
@@ -21,14 +25,9 @@ class ProductController extends Controller {
 	 */
 	public function index()
 	{
-		return view('product.products');
-	}
-
-	public function productList()
-	{
-		$products = new Product();
-		$products = Product::all();
-		return view('product.index',['products'=>$products]);
+		$categorys = new Category();
+		$categorys = Category::all();
+		return view('category.index' , array('categorys'=> $categorys));
 	}
 
 	/**
@@ -38,7 +37,12 @@ class ProductController extends Controller {
 	 */
 	public function create()
 	{
-		return view('product.createProduct');
+
+		// echo "<pre>";
+		// print_r(Auth::user());
+		// die();
+		return view('category.category');
+		
 	}
 
 	/**
@@ -48,16 +52,10 @@ class ProductController extends Controller {
 	 */
 	public function store()
 	{
-		$products = new Product();
-		$products->name =Input::get('name');
-		$products->price = Input::get('price');
-		$products->categories_id = Input::get('category');
-		$products->picture = Input::get('picture');
-		$products->qty = Input::get('qty');
-		$products->condition = Input::get('condition');
-		$products->brand_id = Input::get('brand');
-		$products->save();
-		return redirect()->route('product-list');
+		$category = new Category();
+		$category->name = Input::get('name');
+		$category->save();
+		//return redirect()->route('category-list');
 	}
 
 	/**

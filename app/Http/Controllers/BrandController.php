@@ -5,9 +5,9 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Brand;
-use App\Category;
+use Input;
 
-class BloglistController extends Controller {
+class BrandController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -16,12 +16,7 @@ class BloglistController extends Controller {
 	 */
 	public function index()
 	{
-		$brands = new Brand();
-		$brands = Brand::all();
-		$category = new Category();
-		$categorys = Category::all();
-
-		return view('blogList.blogList',['categorys'=>$categorys,'brands'=>$brands]);
+		return view('brand.brand');
 	}
 
 	/**
@@ -34,6 +29,12 @@ class BloglistController extends Controller {
 		//
 	}
 
+	public function brandList()
+	{
+		 $brands = new Brand();
+		 $brands = Brand::all();
+		 return view('brand.index',['brands'=>$brands]);
+	}
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -41,7 +42,10 @@ class BloglistController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$brand = new Brand();
+		$brand->name = Input::get('name');
+		$brand->save();
+		return Redirect()->route('brand-list');
 	}
 
 	/**

@@ -4,6 +4,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Brand;
+use App\Category;
 
 class SingleBlogController extends Controller {
 
@@ -14,7 +16,11 @@ class SingleBlogController extends Controller {
 	 */
 	public function index()
 	{
-		return view('singleBlog.singleBlog');
+		$brands = new Brand();
+		$brands = Brand::all();
+		$category = new Category();
+		$categorys = Category::all();
+		return view('singleBlog.singleBlog',['categorys'=>$categorys,'brands'=>$brands]);
 	}
 
 	/**

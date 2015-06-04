@@ -8,7 +8,7 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
-		<form role="form" method="POST" action="{{URL::route('create-product')}}">
+		<form role="form" enctype="multipart/form-data" method="POST" action="{{URL::route('create-product')}}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<div class="form-group">
 				<label>Product Name:</label>
@@ -31,12 +31,21 @@
 				<input type="text" name="condition" value="" id="condition" placeholder="Product Condition" class="form-control">
 			</div>
 			<div class="form-group">
-				<label>Category:</label>
-				<input type="text" name="category" value="" id="condition" placeholder="Product Condition" class="form-control">
+			<label>Category:</label>
+			  <select class="form-control" name="category"  id="category">
+			@foreach($categorys as $category)
+				<option value="{{$category->id}}" >{{ $category->name }}</option>
+			@endforeach
+			</select>
+			
 			</div>
 			<div class="form-group">
-				<label>Brand:</label>
-				<input type="text" name="brand" value="" id="brand" placeholder="Product Brand" class="form-control">
+			<label>Brand:</label>
+			  <select class="form-control"  name="brand" id="brand">
+			@foreach($brands as $brand)
+				<option value="{{$brand->id}}">{{ $brand->name }}</option>
+			@endforeach
+			</select>
 			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary">Submit</button>

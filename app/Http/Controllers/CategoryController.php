@@ -27,6 +27,7 @@ class CategoryController extends Controller {
 	{
 		$categorys = new Category();
 		$categorys = Category::all();
+		//$subcategory = DB::table('category')->find();
 		return view('category.index' , array('categorys'=> $categorys));
 	}
 
@@ -41,7 +42,9 @@ class CategoryController extends Controller {
 		// echo "<pre>";
 		// print_r(Auth::user());
 		// die();
-		return view('category.category');
+		$categorys = new Category();
+		$categorys = Category::all();
+		return view('category.category' ,['categorys'=>$categorys]);
 		
 	}
 
@@ -54,8 +57,9 @@ class CategoryController extends Controller {
 	{
 		$category = new Category();
 		$category->name = Input::get('name');
+		$category->under_category = Input::get('under_category');
 		$category->save();
-		//return redirect()->route('category-list');
+	   return redirect()->route('category-list');
 	}
 
 	/**

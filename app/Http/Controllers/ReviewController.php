@@ -4,10 +4,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Brand;
-use App\Category;
-
-class BloglistController extends Controller {
+use Input;
+use App\Review;
+class ReviewController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -16,13 +15,9 @@ class BloglistController extends Controller {
 	 */
 	public function index()
 	{
-		$brands = new Brand();
-		$brands = Brand::all();
-		$category = new Category();
-		$categorys = Category::all();
+		
 
-		return view('blogList.blogList',['categorys'=>$categorys,'brands'=>$brands]);
-	}
+     }
 
 	/**
 	 * Show the form for creating a new resource.
@@ -41,7 +36,16 @@ class BloglistController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$review = new Review();
+		$id = Input::get('id');
+		$review->product_id = $id;
+		$review->name = Input::get('name');
+		$review->email = Input::get('email');
+		$review->message = Input::get('message');
+		$review->save();
+		
+		
+		return redirect()->route('product-details',$id);
 	}
 
 	/**
@@ -52,7 +56,8 @@ class BloglistController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		
+		
 	}
 
 	/**

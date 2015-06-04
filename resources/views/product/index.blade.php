@@ -27,7 +27,7 @@
 						<td>{{$product->name}}</td>
 						<td>{{$product->categories_id}}</td>
 						<td>{{$product->price}}</td>
-						<td><img src="{{$product->picture}}"></td>
+						<td>{{$product->picture}}</td>
 						<td>{{$product->condition}}</td>
 						<td>{{$product->brand_id}}</td>
 						<td class="btn btn-default"><a href="{{URL::route('create-product')}}"> New </a></td>

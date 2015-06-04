@@ -4,10 +4,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Brand;
 use App\Category;
-
-class BloglistController extends Controller {
+class SubcategoryController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -16,12 +14,8 @@ class BloglistController extends Controller {
 	 */
 	public function index()
 	{
-		$brands = new Brand();
-		$brands = Brand::all();
-		$category = new Category();
-		$categorys = Category::all();
-
-		return view('blogList.blogList',['categorys'=>$categorys,'brands'=>$brands]);
+		
+		return view('subcategory.createCategory');
 	}
 
 	/**
@@ -31,7 +25,10 @@ class BloglistController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		$categorys = new Category();
+		$categorys = Category::all();
+
+		return view('subcategory.createCategory',['categorys'=>$categorys]);
 	}
 
 	/**

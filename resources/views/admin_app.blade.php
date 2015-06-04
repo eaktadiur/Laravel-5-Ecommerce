@@ -36,6 +36,8 @@
 						<li><a href="#">Home</a></li>
 						<li><a href="{{ URL::route('category-list') }}">Category</a></li>
 						<li><a href="{{URL::route('product-list')}}">Product</a> </li>
+						<li><a href="{{URL::route('brand-list')}}">Brand</a>
+						<li><a href="{{URL::route('subcategory')}}">Sub Category</a></li>
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">

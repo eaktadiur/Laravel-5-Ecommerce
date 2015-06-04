@@ -4,6 +4,11 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Category;
+use App\Brand;
+use App\Product;
+use App\Contact;
+use Input;
 
 class PagesController extends Controller {
 
@@ -14,7 +19,14 @@ class PagesController extends Controller {
 	 */
 	public function index()
 	{
-		 return view('home');
+		$brands = new Brand();
+		$brands = Brand::all();
+		$category = new Category();
+		$categorys = Category::all();
+		$products = new Product();
+		$products = Product::all();
+
+		 return view('home',['categorys'=>$categorys , 'brands'=>$brands ,'products'=>$products]);
 	}
 
 	public function error()
@@ -39,7 +51,12 @@ class PagesController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$product = new Product();
+		$product->name = Input::get('name');
+		$product->email = Input::get('email');
+		$product->subject = Input::get('subject');
+		$product->message = Input::get('message');
+		$product->save();
 	}
 
 	/**

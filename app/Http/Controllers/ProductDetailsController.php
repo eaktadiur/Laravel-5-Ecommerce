@@ -4,7 +4,11 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-
+use App\product;
+use App\Category;
+use App\Brand;
+use App\Review;
+use DB;
 class ProductDetailsController extends Controller {
 
 	/**
@@ -12,9 +16,17 @@ class ProductDetailsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($id)
 	{
-		return view('productDetails.productDetails');
+		$product = new Product();
+		$product = Product::find($id);
+		$categorys = new Category();
+		$categorys = Category::all();
+		$brands = new Brand();
+		$brands = Brand::all();
+		$reviews = new Review();
+		$reviews = $reviews = DB::table('review')->where('product_id','=',$id)->get();
+		return view('productDetails.productDetails' ,['product'=> $product ,'categorys'=>$categorys,'brands'=>$brands,'reviews'=>$reviews]);
 	}
 
 	/**
@@ -22,8 +34,9 @@ class ProductDetailsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function prductDetail()
 	{
+		return view('productDetails.productDetails');
 		
 	}
 

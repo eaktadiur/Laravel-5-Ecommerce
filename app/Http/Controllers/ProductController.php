@@ -4,8 +4,11 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
+use App\Category;
+use App\Brand;
 use auth;
 use Input;
+use App\Image;
 
 class ProductController extends Controller {
 
@@ -21,7 +24,13 @@ class ProductController extends Controller {
 	 */
 	public function index()
 	{
-		return view('product.products');
+		$brands = new Brand();
+		$brands = Brand::all();
+		$category = new Category();
+		$categorys = Category::all();
+		$products= new Product();
+		$products = Product::all();
+		return view('product.products',['categorys'=>$categorys,'brands'=>$brands,'products'=> $products]);
 	}
 
 	public function productList()
@@ -38,7 +47,11 @@ class ProductController extends Controller {
 	 */
 	public function create()
 	{
-		return view('product.createProduct');
+		$brands = new Brand();
+		$brands = Brand::all();
+		$categorys = new Category();
+		$categorys = Category::all();
+		return view('product.createProduct',['categorys'=>$categorys ,'brands'=>$brands]);
 	}
 
 	/**
@@ -48,17 +61,31 @@ class ProductController extends Controller {
 	 */
 	public function store()
 	{
+		
 		$products = new Product();
-		$products->name =Input::get('name');
+	    $name = Input::get('name');
+		$products->name =$name;
 		$products->price = Input::get('price');
-		$products->categories_id = Input::get('category');
-		$products->picture = Input::get('picture');
+		$products->catagories_id = Input::get('category');
+	    $picture = Input::file('picture');
+	    if($picture)
+	    {
+	        $destinationPath = 'upload/';
+	        $extension = $picture->getClientOriginalExtension();
+	        $randomNumber = str_random(10);
+	    	
+	    	$filename1 = $name.'_'.$randomNumber.'.'.$extension;
+	    	$filename2 = str_replace(' ', '_', $filename1);
+	    	
+	    	$upload_success = Input::file('picture')->move($destinationPath,$filename2);
+	    }
+	    $products->picture = $destinationPath.$filename2;
 		$products->qty = Input::get('qty');
 		$products->condition = Input::get('condition');
 		$products->brand_id = Input::get('brand');
 		$products->save();
 		return redirect()->route('product-list');
-	}
+		}
 
 	/**
 	 * Display the specified resource.
@@ -66,9 +93,9 @@ class ProductController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function productDetail($id)
 	{
-		//
+		
 	}
 
 	/**
